@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+	
+		<title>Login</title>
+		<link rel="stylesheet" type="text/css" th:href="@{css/bootstrap.min.css}" />
+		
+ 		<script th:src="@{js/popper.min.js}" type="text/javascript"></script>
+ 		<script th:src="@{js/jquery-3.3.1.slim.min.js}" type="text/javascript"></script>
+ 		<script th:src="@{js/jquery-1.12.4.min.js}" type="text/javascript"></script>
+		<script th:src="@{js/bootstrap.min.js}" type="text/javascript"></script>
+		<script th:src="@{js/fontawesome.all.js}" type="text/javascript"></script>
+	</head>
+	<body>
+		<div th:fragment="menu">
+			<nav class="navbar navbar-default">
+		        <div class="container-fluid">
+				    <div class="navbar-header">
+				    	<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+				    		<span class="sr-only">Toggle</span>
+				    		<span class="icon-bar"></span>
+				    		<span class="icon-bar"></span>
+				    		<span class="icon-bar"></span>
+				    	</button>
+				    	<a class="navbar-brand" th:href="@{/inicio}">UM</a>
+				    </div>
+					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				      	<ul class="nav navbar-nav">
+						    <li class="dropdown">
+						    	<a th:if="${#strings.contains(role,'SUPER')}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Usuarios <span class="caret"></span></a>
+							    <ul class="dropdown-menu">
+								    <li><a th:href="@{/usuario/usuarios}">Usuario</a></li>
+							    </ul>
+						    </li>
+						    <li class="dropdown">
+						    	<a th:if="${#strings.contains(role,'SUPER') OR #strings.contains(role,'ADMIN')}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Catalogos <span class="caret"></span></a>
+							    <ul class="dropdown-menu">
+								    <li><a th:href="@{/area/areas}">Área</a></li>
+							    </ul>
+						    </li>
+						    <li class="dropdown">
+						    	<a th:if="${#strings.contains(role,'SUPER') OR #strings.contains(role,'MODERADOR')}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Resultados <span class="caret"></span></a>
+							    <ul class="dropdown-menu">
+								    <li><a th:href="@{/resultado/resultadoGeneral}">General</a></li>
+							    </ul>
+						    </li>
+						    <li class="dropdown">
+						    	<a th:if="${#strings.contains(role,'SUPER') OR #strings.contains(role,'MODERADOR')}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Aspirantes <span class="caret"></span></a>
+							    <ul class="dropdown-menu">
+								    <li><a th:href="@{/aspirantes/aspirantes}">Aspirantes</a></li>
+							    </ul>
+						    </li>
+						    <li class="dropdown">
+						    	<a th:if="${#strings.contains(role,'SUPER') OR #strings.contains(role,'ADMIN') OR #strings.contains(role,'TPT')}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">TPT <span class="caret"></span></a>
+							    <ul class="dropdown-menu">
+								    <li><a th:href="@{/tpt/fechasExamen}">TPT - XML</a></li>
+							    </ul>
+						    </li>
+						    <li class="dropdown">
+						    	<a th:if="${#strings.contains(role,'SUPER') OR #strings.contains(role,'ADMIN')}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dashboard <span class="caret"></span></a>
+							    <ul class="dropdown-menu">
+								    <li th:if="${#strings.contains(role,'SUPER') OR #strings.contains(acceso,'-1-')}"><a th:href="@{/clasificacion/clasificacion?AreaId=1}" th:text="${mapaArea[__1__].nombre}"></a></li>
+								    <li th:if="${#strings.contains(role,'SUPER') OR #strings.contains(acceso,'-15-')}"><a th:href="@{/clasificacion/clasificacion?AreaId=15}" th:text="${mapaArea[__15__].nombre}"></a></li>
+								    <li th:if="${#strings.contains(role,'SUPER') OR #strings.contains(acceso,'-16-')}"><a th:href="@{/clasificacion/clasificacion?AreaId=15}" th:text="${mapaArea[__16__].nombre}"></a></li>
+								    <li th:if="${#strings.contains(role,'SUPER') OR #strings.contains(acceso,'-2-')}"><a th:href="@{/clasificacion/clasificacion?AreaId=2}" th:text="${mapaArea[__2__].nombre}"></a></li>
+								    <li th:if="${#strings.contains(role,'SUPER') OR #strings.contains(acceso,'-17-')}"><a th:href="@{/clasificacion/clasificacion?AreaId=17}" th:text="${mapaArea[__17__].nombre}"></a></li>
+								    <li th:if="${#strings.contains(role,'SUPER') OR #strings.contains(acceso,'-18-')}"><a th:href="@{/clasificacion/clasificacion?AreaId=18}" th:text="${mapaArea[__18__].nombre}"></a></li>
+								    <li th:if="${#strings.contains(role,'SUPER') OR #strings.contains(acceso,'-3-')}"><a th:href="@{/clasificacion/clasificacion?AreaId=3}" th:text="${mapaArea[__3__].nombre}"></a></li>
+								    <li th:if="${#strings.contains(role,'SUPER') OR #strings.contains(acceso,'-14-')}"><a th:href="@{/clasificacion/clasificacion?AreaId=14}" th:text="${mapaArea[__14__].nombre}"></a></li>
+								    <li th:if="${#strings.contains(role,'SUPER') OR #strings.contains(acceso,'-4-')}"><a th:href="@{/clasificacion/clasificacion?AreaId=4}" th:text="${mapaArea[__4__].nombre}"></a></li>
+								    <li th:if="${#strings.contains(role,'SUPER') OR #strings.contains(acceso,'-19-')}"><a th:href="@{/clasificacion/clasificacion?AreaId=19}" th:text="${mapaArea[__19__].nombre}"></a></li>
+								    <li th:if="${#strings.contains(role,'SUPER') OR #strings.contains(acceso,'-5-')}"><a th:href="@{/clasificacion/clasificacion?AreaId=5}" th:text="${mapaArea[__5__].nombre}"></a></li>
+								    <li th:if="${#strings.contains(role,'SUPER') OR #strings.contains(acceso,'-6-')}"><a th:href="@{/clasificacion/clasificacion?AreaId=6}" th:text="${mapaArea[__6__].nombre}"></a></li>
+								    <li th:if="${#strings.contains(role,'SUPER') OR #strings.contains(acceso,'-7-')}"><a th:href="@{/clasificacion/clasificacion?AreaId=7}" th:text="${mapaArea[__7__].nombre}"></a></li>
+								    <li th:if="${#strings.contains(role,'SUPER') OR #strings.contains(acceso,'-8-')}"><a th:href="@{/clasificacion/clasificacion?AreaId=8}" th:text="${mapaArea[__8__].nombre}"></a></li>
+								    <li th:if="${#strings.contains(role,'SUPER') OR #strings.contains(acceso,'-9-')}"><a th:href="@{/clasificacion/clasificacion?AreaId=9}" th:text="${mapaArea[__9__].nombre}"></a></li>
+							    </ul>
+						    </li>
+					    </ul>
+					    <ul class="nav navbar-nav navbar-right">
+						    <li class="dropdown">
+							    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sesion <span class="caret"></span></a>
+							    <ul class="dropdown-menu">
+								    <li><a th:href="@{/logout}">Cerrar sesión</a></li>
+							    </ul>
+						    </li>
+					    </ul>
+				    </div>
+			    </div>
+		    </nav>
+	    </div>
+	</body>
+</html>
